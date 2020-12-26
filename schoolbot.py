@@ -1,5 +1,9 @@
 # coding=utf-8
 
+#0 Documentation
+#0.1 Threading usage
+# Only use threading.Thread, if time.sleep is in the code snippet to use less performance
+
 #1 imports
 import discord
 from discord.ext import commands
@@ -97,6 +101,8 @@ def mSetlanguage(ctx, language):
             while "//n" in i:
                 i.replace("//n", "\n")
 
+                #TODO: This belongs to on_message
+
 
 
 
@@ -106,6 +112,6 @@ def mSetlanguage(ctx, language):
 #8.1 setlanguage
 @client.command()
 async def setlanguage(ctx, language):
-    t = threading.Thread(target = mSetlanguage(ctx, language))
+    t = threading.Thread(target = mSetlanguage, args = (ctx, language))
     t.start()
-    #TODO: Check out how to pass arguments in threading and if you have to stop a thread after time
+    #TODO: Do not use threading here
