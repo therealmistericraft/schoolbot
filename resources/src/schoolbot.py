@@ -140,4 +140,4 @@ async def test(ctx):
 
 #9 Token
 
-client.run("Nzg5MTY3OTg1NDQ0NjUxMDA4.X9uH9Q.-dl0gUI40NRdZRPTIZXWk7VmpkI")
+client.run("YOUR TOKEN HERE")
