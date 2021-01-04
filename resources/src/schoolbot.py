@@ -36,38 +36,31 @@ import ast
 #2 settings
 
 #2.1 Activate Intents from API
-intents = discord.Intent.all()
+intents = discord.Intents.all()
 
 #3 instance variables
 prefix = ""
 lang = ""
+custom_prefixes = {}
 
 #4 initalizing
 
 #4.1 prefix
-prefixfile = open('prefix.txt', 'r')
-data = prefixfile.read()
-data = data.split('\n')
-custom_prefixes = data[0]
-custom_prefixes = ast.literal_eval(custom_prefixes)
+with open("../data/usr/prefix.json") as prefixfile:
+    custom_prefixes = json.load(prefixfile)
 default_prefix = '§'
-prefixfile.close()
 
 #4.2 language
-langfile = open('lang.txt', 'r')
-data = langfile.read()
-data = data.split('\n')
-langs = data[0]
-langs = ast.literal_eval(langs)
-langfile.close()
+with open("../data/usr/lang.json") as langfile:
+        langs = json.load(langfile)
 
 #4.3 multi-language messages
 #4.3.1 german
-gerfile = open('german.txt', 'r')
-msg_ger = gerfile.read().split('\n')
+with open("../data/lang/german.json") as gerfile:
+    msg_ger = json.load(gerfile)
 #4.3.2 english
-engfile = open('english.txt', 'r')
-msg_eng = engfile.read().split('\n')
+with open("../data/lang/english.json") as engfile:
+    msg_eng = json.load(engfile)
 
 
 #5 create bot instance
@@ -88,7 +81,7 @@ async def on_message(message):
     global custom_prefixes
     global client
     if message.guild:
-        if not message.content == '§setlanguage'
+        if not message.content == '§setlanguage':
             if langs.get(message.guild.id):
                 if langs.get(message.guild.id) == "german":
                     lang = msg_ger
@@ -133,5 +126,18 @@ async def on_guild_join(guild):
 async def setlanguage(ctx, pLanguage):
     if pLanguage == "german" or pLanguage == "english":
         langs[ctx.guild.id] = pLanguage
+        await ctx.send("Language has been set up successfully!")
     else:
         await ctx.send("Your language is not available. Availavle languages are: `german`, `english`")
+
+@client.command()
+async def test(ctx):
+    await ctx.send(lang[0])
+
+
+
+
+
+#9 Token
+
+client.run("Nzg5MTY3OTg1NDQ0NjUxMDA4.X9uH9Q.-dl0gUI40NRdZRPTIZXWk7VmpkI")
