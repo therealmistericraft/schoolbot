@@ -168,4 +168,4 @@ async def test(ctx):
 
 #9 Token
 
-client.run("YOU(R TOKEN HERE)")
+client.run("(YOUR TOKEN HERE)")
