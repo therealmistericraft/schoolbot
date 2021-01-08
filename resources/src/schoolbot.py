@@ -95,7 +95,7 @@ async def on_message(message):
                 if langs[str(message.guild.id)] == "english":
                     lang = msg_eng
             elif message.content.startswith == prefix:
-                await message.channel.send(content=None, embed=discord.Embed(title='Error 001', description='There is no language set up for this guild/server. Please contact server owner, which can set up the language with `*setlanguage`.', colour=discord.Colour.red()))
+                await message.channel.send(content=None, embed=discord.Embed(title='Error 001', description='There is no language set up for this guild/server. Please contact the owner of the server, which can set up the language with `*setlanguage`.', colour=discord.Colour.red()))
             else:
                 print("Es wird nicht erkannt, dass eine sprache aufgesetzt wurde")
         if custom_prefixes[str(message.guild.id)]:
@@ -114,7 +114,7 @@ async def on_message(message):
 @client.event
 async def on_guild_join(guild):
     owner = guild.owner
-    await owner.send(content=None, embed=discord.Embed(title="Thanks for adding schoolbot to your Server!", description="To get started, you have to set up your language. Before this, nothing will work.", colour=discord.Colour.orange()).add_field(name="Start", value="Type `§setlanguage` followed by your language in small letters (e.g. `§setlanguage german`) in a channel the Bot is allowed to read and write in.", inline=False).add_field(name="Trubleshooting", value="I am a junior developer and do not know everything, so the language choice is not reliable nor stable. Please contact me by sending a private message to the bot."))
+    await owner.send(content=None, embed=discord.Embed(title="Thanks for adding schoolbot to your Server!", description="To get started, you have to set up your language. Before this, nothing will work.", colour=discord.Colour.orange()).add_field(name="Start", value="Type `§setlanguage` followed by your language in small letters (e.g. `§setlanguage german`) in a channel the Bot is allowed to read and write in.", inline=False).add_field(name="Troubleshooting", value="I am a junior developer and do not know everything, so the language choice is not reliable nor stable. Please contact me by sending a private message to the bot."))
 
 #6.3 on_ready
 @client.event
@@ -142,10 +142,10 @@ async def setlanguage(ctx, pLanguage):
     if pLanguage == "german" or pLanguage == "english":
         langs[str(ctx.guild.id)] = pLanguage
         with open("../data/usr/lang.json", "w") as langfile:
-            json.dump(langs, langfile)
+            json.dump(langs, langfile, indent=4)
         await ctx.send("Language has been set up successfully! Your language: `"+pLanguage+"`")
     else:
-        await ctx.send("Your language is not available. Availavle languages are: `german`, `english`")
+        await ctx.send("Your language is not available. Available languages are: `german`, `english`")
 
 #8.2 setprefix
 @client.command(aliases = ['changeprefix', 'cp', 'prefix'])
@@ -153,7 +153,7 @@ async def setprefix(ctx, pPrefix):
     global prefix
     custom_prefixes[str(ctx.guild.id)] = pPrefix
     with open("../data/usr/lang.json", "w") as prefixfile:
-        json.dump(custom_prefixes, prefixfile)
+        json.dump(custom_prefixes, prefixfile, indent=4)
     await ctx.send("Your prefix is now `"+custom_prefixes[str(ctx.guild.id)]+"`")
 
 #8.x test
@@ -168,4 +168,4 @@ async def test(ctx):
 
 #9 Token
 
-client.run("Nzg5MTY3OTg1NDQ0NjUxMDA4.X9uH9Q.lPOyuOJJbJQJdqu1JISDxiLFliM")
+client.run("YOU(R TOKEN HERE)")
