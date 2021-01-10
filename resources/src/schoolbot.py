@@ -2,7 +2,7 @@
 
 #0 Documentation
 #0.1 Threading usage
-# Only use threading.Thread, if time.sleep is in the code snippet to use less performance
+    # Only use threading.Thread, if time.sleep is in the code snippet to use less performance
 
 #0.2 Variables
     #0.2.1 prefix
@@ -88,28 +88,50 @@ async def load(ctx, extension):
         client.load_extension(f"core.{extension}")
     if extension+".py" in os.listdir("./events"):
         client.load_extension(f"events.{extension}")
+    if extension+".py" in os.listdir("./courses"):
+        client.load_extension(f"courses.{extension}")
 
-        
-        
-# 7 unload specific cogs
+
+
+#7 unload specific cogs
 @client.command()
 async def unload(ctx, extension):
     if extension+".py" in os.listdir("./core"):
         client.unload_extension(f"core.{extension}")
     if extension+".py" in os.listdir("./events"):
         client.unload_extension(f"events.{extension}")
+    if extension+".py" in os.listdir("./courses"):
+        client.unload_extension(f"courses.{extension}")
 
 
-        
-#8 Activating/loading all cogs on startup
+
+#8 reload specific cogs
+@client.command()
+async def reload(ctx, extension):
+    if extension+".py" in os.listdir("./core"):
+        client.unload_extension(f"core.{extension}")
+        client.load_extension(f"core.{extension}")
+    if extension+".py" in os.listdir("./events"):
+        client.unload_extension(f"events.{extension}")
+        client.load_extension(f"events.{extension}")
+    if extension+".py" in os.listdir("./courses"):
+        client.unload_extension(f"courses.{extension}")
+        client.load_extension(f"courses.{extension}")
+
+
+
+#9 Activating/loading all cogs on startup
 for filename in os.listdir("./core"):
     if filename.endswith(".py"):
         client.load_extension(f"core.{filename[:-3]}")
 for filename in os.listdir("./events"):
     if filename.endswith(".py"):
         client.load_extension(f"events.{filename[:-3]}")
+for filename in os.listdir("./courses"):
+    if filename.endswith(".py"):
+        client.load_extension(f"courses.{filename[:-3]}")
 
 
 
-#9 Token
-client.run("Nzg5MTY3OTg1NDQ0NjUxMDA4.X9uH9Q.R9ESlVGDymMgGCr1kLLsVY8jeik")
+#10 Token
+client.run("Nzg5MTY3OTg1NDQ0NjUxMDA4.X9uH9Q.ZVgpZJFLBQXb1lQLkN9p5qS4HBc")

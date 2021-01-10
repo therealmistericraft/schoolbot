@@ -1,4 +1,10 @@
 {
   "0":"Hilfe [Seite 1] - Den Bot einrichten",
-  "1":"Hilfe [Seite 2] - Alles rund um Aufgaben"
+  "1":"Hilfe [Seite 2] - Alles rund um Aufgaben",
+  "2":"Willkommen zum Setup-Assistenten.",
+  "3":"Ich habe einen neuen Kanal erstellt, in den du als nächstes die Kursliste deiner Klasse / deiner Stufe / deiner Schule posten musst. Ich habe ihn `schoolbot-setup` genannt.",
+  "4":"Allerdings muss die Kursliste zwangsläufig im `json`-Format sein. Um also eine Kursliste zu erstellen, mache unter Windows einen Rechtsklick auf eine freie Fläche auf dem Desktop oder im Explorer. Navigiere zu `Neu->Textdokument`. Wähle mit `STRG`+`A` auch die Dateinamenerweiterung aus und nenne die Datei `courselist.json`. Bestätige mit der `ENTER`-Taste.",
+  "5":"An diesem Beispiel siehst du, was du in die Datei schreiben musst. Falls du Hilfe benötigst, schaue doch auf unserem Discord-Server vorbei (https://discord.gg/ra2yz4tyPa).",
+  "6":"```{\n    \"[KURSNAME]\":\"[KÜRZEL]|[THEMA]\"\n}",
+  "7":"Ersetze die Wörter in Großbuchstaben inklusive der eckigen Klammern durch den jeweiligen Wert. Beachte, dass das Kürzel aus genau drei Buchstaben oder Zahlen bestehen muss(, wobei diese auch kombiniert werden können). Satzzeichen oder Sonderzeichen führen zu fehlern."
 }
