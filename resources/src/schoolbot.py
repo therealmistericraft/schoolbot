@@ -84,39 +84,51 @@ client.remove_command('help')
 #6 Load specific cogs
 @client.command()
 async def load(ctx, extension):
-    if extension+".py" in os.listdir("./core"):
-        client.load_extension(f"core.{extension}")
-    if extension+".py" in os.listdir("./events"):
-        client.load_extension(f"events.{extension}")
-    if extension+".py" in os.listdir("./courses"):
-        client.load_extension(f"courses.{extension}")
+    if ctx.message.author.id == 303166734557380608:
+        if extension+".py" in os.listdir("./core"):
+            client.load_extension(f"core.{extension}")
+            await ctx.send(content=None, embed=discord.Embed(title="Command of core was loaded.", description=None, colour=discord.Colour.orange()))
+        if extension+".py" in os.listdir("./events"):
+            client.load_extension(f"events.{extension}")
+            await ctx.send(content=None, embed=discord.Embed(title="Event was loaded.", description=None, colour=discord.Colour.orange()))
+        if extension+".py" in os.listdir("./courses"):
+            client.load_extension(f"courses.{extension}")
+            await ctx.send(content=None, embed=discord.Embed(title="Command of courses was loaded.", description=None, colour=discord.Colour.orange()))
 
 
 
 #7 unload specific cogs
 @client.command()
 async def unload(ctx, extension):
-    if extension+".py" in os.listdir("./core"):
-        client.unload_extension(f"core.{extension}")
-    if extension+".py" in os.listdir("./events"):
-        client.unload_extension(f"events.{extension}")
-    if extension+".py" in os.listdir("./courses"):
-        client.unload_extension(f"courses.{extension}")
+    if ctx.message.author.id == 303166734557380608:
+        if extension+".py" in os.listdir("./core"):
+            client.unload_extension(f"core.{extension}")
+            await ctx.send(content=None, embed=discord.Embed(title="Command of core was unloaded.", description=None, colour=discord.Colour.orange()))
+        if extension+".py" in os.listdir("./events"):
+            client.unload_extension(f"events.{extension}")
+            await ctx.send(content=None, embed=discord.Embed(title="Event was unloaded.", description=None, colour=discord.Colour.orange()))
+        if extension+".py" in os.listdir("./courses"):
+            client.unload_extension(f"courses.{extension}")
+            await ctx.send(content=None, embed=discord.Embed(title="Command of courses was reloaded.", description=None, colour=discord.Colour.orange()))
 
 
 
 #8 reload specific cogs
 @client.command()
 async def reload(ctx, extension):
-    if extension+".py" in os.listdir("./core"):
-        client.unload_extension(f"core.{extension}")
-        client.load_extension(f"core.{extension}")
-    if extension+".py" in os.listdir("./events"):
-        client.unload_extension(f"events.{extension}")
-        client.load_extension(f"events.{extension}")
-    if extension+".py" in os.listdir("./courses"):
-        client.unload_extension(f"courses.{extension}")
-        client.load_extension(f"courses.{extension}")
+    if ctx.message.author.id == 303166734557380608:
+        if extension+".py" in os.listdir("./core"):
+            await ctx.send(content=None, embed=discord.Embed(title="Command of core was reloaded.", description=None, colour=discord.Colour.orange()))
+            client.unload_extension(f"core.{extension}")
+            client.load_extension(f"core.{extension}")
+        if extension+".py" in os.listdir("./events"):
+            await ctx.send(content=None, embed=discord.Embed(title="Event was reloaded.", description=None, colour=discord.Colour.orange()))
+            client.unload_extension(f"events.{extension}")
+            client.load_extension(f"events.{extension}")
+        if extension+".py" in os.listdir("./courses"):
+            await ctx.send(content=None, embed=discord.Embed(title="Command of courses was reloaded.", description=None, colour=discord.Colour.orange()))
+            client.unload_extension(f"courses.{extension}")
+            client.load_extension(f"courses.{extension}")
 
 
 
@@ -134,4 +146,4 @@ for filename in os.listdir("./courses"):
 
 
 #10 Token
-client.run("Nzg5MTY3OTg1NDQ0NjUxMDA4.X9uH9Q.ZVgpZJFLBQXb1lQLkN9p5qS4HBc")
+client.run("TODO: insert TOKEN")
