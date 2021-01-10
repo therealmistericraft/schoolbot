@@ -129,6 +129,6 @@ dmypy.json
 .pyre/
 
 # __pycache__
-resources/src/__pycache__
-resources/src/core/__pycache__
-resources/src/events/__pycache__
+resources/src/__pycache__/
+resources/src/core/__pycache__/
+resources/src/events/__pycache__/
