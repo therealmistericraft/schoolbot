@@ -152,7 +152,7 @@ async def setlanguage(ctx, pLanguage):
 async def setprefix(ctx, pPrefix):
     global prefix
     custom_prefixes[str(ctx.guild.id)] = pPrefix
-    with open("../data/usr/lang.json", "w") as prefixfile:
+    with open("../data/usr/prefix.json", "w") as prefixfile:
         json.dump(custom_prefixes, prefixfile, indent=4)
     await ctx.send("Your prefix is now `"+custom_prefixes[str(ctx.guild.id)]+"`")
 
