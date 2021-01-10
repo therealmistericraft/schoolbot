@@ -23,14 +23,19 @@
     #lang[0]: helpembed page "setup" title
     #lang[1]: helpembed page "assignments" title
 
+#0.4 Cogs
+    #Since I work with cogs now, this file has only 2 (main) purposes: loading/unloading/reloading single or grouped cogs and transmitting variables, which are all stored in this file as a central place.
+    #Everything else is in subfolders of the src folder.
+
+
+
+
 
 #1 imports
 import discord
 from discord.ext import commands
 from discord.ext import tasks
 from discord.utils import get
-from time import sleep
-import threading
 import json
 import os
 
@@ -78,6 +83,7 @@ client.remove_command('help')
 #6 Events
 
 #6.1 on_message
+"""
 @client.event
 async def on_message(message):
     global default_prefix
@@ -110,65 +116,36 @@ async def on_message(message):
         embed = discord.Embed(title="Das Prefix dieses Servers ist ``"+prefix+"``.", colour=discord.Colour.blue())
         await message.channel.send(content=None, embed=embed)
     await client.process_commands(message)
-
-#6.2 on_guild_join: Send tutorial to guild owner how to set up the bot
-@client.event
-async def on_guild_join(guild):
-    owner = guild.owner
-    await owner.send(content=None, embed=discord.Embed(title="Thanks for adding schoolbot to your Server!", description="To get started, you have to set up your language. Before this, nothing will work.", colour=discord.Colour.orange()).add_field(name="Start", value="Type `§setlanguage` followed by your language in small letters (e.g. `§setlanguage german`) in a channel the Bot is allowed to read and write in.", inline=False).add_field(name="Troubleshooting", value="I am a junior developer and do not know everything, so the language choice is not reliable nor stable. Please contact me by sending a private message to the bot."))
-
-#6.3 on_ready
-@client.event
-async def on_ready():
-    print("Ready")
+"""
 
 
 
-
-
-#7 Command methods
-
-#7.
-
-
-
-
-
-#8 Commands
-
-#8.1 setlanguage
-@client.command(aliases = ['changelanguage', 'cl', 'language'])
-async def setlanguage(ctx, pLanguage):
-    global langs
-    if pLanguage == "german" or pLanguage == "english":
-        langs[str(ctx.guild.id)] = pLanguage
-        with open("../data/usr/lang.json", "w") as langfile:
-            json.dump(langs, langfile, indent=4)
-        await ctx.send("Language has been set up successfully! Your language: `"+pLanguage+"`")
-    else:
-        await ctx.send("Your language is not available. Available languages are: `german`, `english`")
-
-#8.2 setprefix
-#@client.command(aliases = ['changeprefix', 'cp', 'prefix'])
-#async def setprefix(ctx, pPrefix):
-#    global prefix
-#    custom_prefixes[str(ctx.guild.id)] = pPrefix
-#    with open("../data/usr/prefix.json", "w") as prefixfile:
-#        json.dump(custom_prefixes, prefixfile, indent=4)
-#    await ctx.send("Your prefix is now `"+custom_prefixes[str(ctx.guild.id)]+"`")
-
-#8.x test
+# Load specific cogs
 @client.command()
-async def test(ctx):
-    global lang
-    await ctx.send(lang["0"])
+async def load(ctx, extension):
+    if extension+".py" in os.listdir("./core"):
+        client.load_extension(f"core.{extension}")
+    if extension+".py" in os.listdir("./events"):
+        client.load_extension(f"events.{extension}")
+
+# Unload specific cogs
+@client.command()
+async def unload(ctx, extension):
+    if extension+".py" in os.listdir("./core"):
+        client.unload_extension(f"core.{extension}")
+    if extension+".py" in os.listdir("./events"):
+        client.unload_extension(f"events.{extension}")
 
 
+# Activating/loading all cogs on startup
 for filename in os.listdir("./core"):
     if filename.endswith(".py"):
         client.load_extension(f"core.{filename[:-3]}")
+for filename in os.listdir("./events"):
+    if filename.endswith(".py"):
+        client.load_extension(f"events.{filename[:-3]}")
 
 
 #9 Token
 
-client.run("Nzg5MTY3OTg1NDQ0NjUxMDA4.X9uH9Q.rv_L214DVS4ff1glbKtfgXCjqwE")
+client.run("Nzg5MTY3OTg1NDQ0NjUxMDA4.X9uH9Q.R9ESlVGDymMgGCr1kLLsVY8jeik")

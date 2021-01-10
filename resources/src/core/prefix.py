@@ -13,7 +13,7 @@ class Prefix(commands.Cog):
     @commands.command(aliases = ['changeprefix', 'cp', 'prefix'])
     async def setprefix(self, ctx, pPrefix):
         main.custom_prefixes[str(ctx.guild.id)] = pPrefix
-        with open(".../data/usr/prefix.json", "w") as prefixfile:
+        with open("../data/usr/prefix.json", "w") as prefixfile:
             json.dump(main.custom_prefixes, prefixfile, indent=4)
         await ctx.send("Your prefix is now `"+main.custom_prefixes[str(ctx.guild.id)]+"`")
 
