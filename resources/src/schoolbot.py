@@ -32,6 +32,7 @@ from discord.utils import get
 from time import sleep
 import threading
 import json
+import os
 
 #2 settings
 
@@ -148,13 +149,13 @@ async def setlanguage(ctx, pLanguage):
         await ctx.send("Your language is not available. Available languages are: `german`, `english`")
 
 #8.2 setprefix
-@client.command(aliases = ['changeprefix', 'cp', 'prefix'])
-async def setprefix(ctx, pPrefix):
-    global prefix
-    custom_prefixes[str(ctx.guild.id)] = pPrefix
-    with open("../data/usr/lang.json", "w") as prefixfile:
-        json.dump(custom_prefixes, prefixfile, indent=4)
-    await ctx.send("Your prefix is now `"+custom_prefixes[str(ctx.guild.id)]+"`")
+#@client.command(aliases = ['changeprefix', 'cp', 'prefix'])
+#async def setprefix(ctx, pPrefix):
+#    global prefix
+#    custom_prefixes[str(ctx.guild.id)] = pPrefix
+#    with open("../data/usr/prefix.json", "w") as prefixfile:
+#        json.dump(custom_prefixes, prefixfile, indent=4)
+#    await ctx.send("Your prefix is now `"+custom_prefixes[str(ctx.guild.id)]+"`")
 
 #8.x test
 @client.command()
@@ -163,9 +164,11 @@ async def test(ctx):
     await ctx.send(lang["0"])
 
 
-
+for filename in os.listdir("./core"):
+    if filename.endswith(".py"):
+        client.load_extension(f"core.{filename[:-3]}")
 
 
 #9 Token
 
-client.run("(YOUR TOKEN HERE)")
+client.run("Nzg5MTY3OTg1NDQ0NjUxMDA4.X9uH9Q.rv_L214DVS4ff1glbKtfgXCjqwE")
