@@ -1,9 +1,13 @@
+# coding=utf-8
+
 import discord
 from discord.ext import commands
 import json
 import sys
 sys.path.append("../")
 import schoolbot as main
+
+
 
 class Prefix(commands.Cog):
 
@@ -16,6 +20,8 @@ class Prefix(commands.Cog):
         with open("../data/usr/prefix.json", "w") as prefixfile:
             json.dump(main.custom_prefixes, prefixfile, indent=4)
         await ctx.send("Your prefix is now `"+main.custom_prefixes[str(ctx.guild.id)]+"`")
+
+
 
 def setup(client):
     client.add_cog(Prefix(client))

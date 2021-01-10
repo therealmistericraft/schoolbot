@@ -1,9 +1,13 @@
+# coding=utf-8
+
 import discord
 from discord.ext import commands
 import json
 import sys
 sys.path.append("../")
 import schoolbot as main
+
+
 
 class On_message(commands.Cog):
 
@@ -32,6 +36,8 @@ class On_message(commands.Cog):
             embed = discord.Embed(title="The prefix of this server is ``"+prefix+"``.", colour=discord.Colour.blue())
             await message.channel.send(content=None, embed=embed)
         await main.client.process_commands(message)
+
+
 
 def setup(client):
     client.add_cog(On_message(client))

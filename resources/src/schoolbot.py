@@ -29,8 +29,6 @@
 
 
 
-
-
 #1 imports
 import discord
 from discord.ext import commands
@@ -39,10 +37,13 @@ from discord.utils import get
 import json
 import os
 
-#2 settings
 
+
+#2 settings
 #2.1 Activate Intents from API
 intents = discord.Intents.all()
+
+
 
 #3 instance variables
 prefix = ""
@@ -52,8 +53,9 @@ langs = {}
 msg_ger = {}
 msg_eng = {}
 
-#4 initalizing
 
+
+#4 initalizing
 #4.1 prefix
 with open("../data/usr/prefix.json") as prefixfile:
     custom_prefixes = json.load(prefixfile)
@@ -72,55 +74,14 @@ with open("../data/lang/english.json") as engfile:
     msg_eng = json.load(engfile)
 
 
+
 #5 create bot instance
 client = commands.Bot(command_prefix = "§", intents = intents)
 client.remove_command('help')
 
 
 
-
-
-#6 Events
-
-#6.1 on_message
-"""
-@client.event
-async def on_message(message):
-    global default_prefix
-    global prefix
-    global custom_prefixes
-    global client
-    global lang
-    global langs
-    global msg_ger
-    global msg_eng
-    if message.guild:
-        if not message.content == '§setlanguage':
-            if langs[str(message.guild.id)]:
-                if langs[str(message.guild.id)] == "german":
-                    lang = msg_ger
-                if langs[str(message.guild.id)] == "english":
-                    lang = msg_eng
-            elif message.content.startswith == prefix:
-                await message.channel.send(content=None, embed=discord.Embed(title='Error 001', description='There is no language set up for this guild/server. Please contact the owner of the server, which can set up the language with `*setlanguage`.', colour=discord.Colour.red()))
-            else:
-                print("Es wird nicht erkannt, dass eine sprache aufgesetzt wurde")
-        if custom_prefixes[str(message.guild.id)]:
-            prefix = custom_prefixes[str(message.guild.id)]
-        else:
-            prefix = default_prefix
-    else:
-        await message.channel.send(content=None, embed=discord.Embed(title='Error 002', description='This Bot is not avaiable in direct chats or an unexpected error occured. Please try again on a guild/server.', colour=discord.Colour.red()))
-    client.command_prefix = prefix
-    if message.content == "prefix":
-        embed = discord.Embed(title="Das Prefix dieses Servers ist ``"+prefix+"``.", colour=discord.Colour.blue())
-        await message.channel.send(content=None, embed=embed)
-    await client.process_commands(message)
-"""
-
-
-
-# Load specific cogs
+#6 Load specific cogs
 @client.command()
 async def load(ctx, extension):
     if extension+".py" in os.listdir("./core"):
@@ -128,7 +89,7 @@ async def load(ctx, extension):
     if extension+".py" in os.listdir("./events"):
         client.load_extension(f"events.{extension}")
 
-# Unload specific cogs
+#7 Unload specific cogs
 @client.command()
 async def unload(ctx, extension):
     if extension+".py" in os.listdir("./core"):
@@ -137,7 +98,7 @@ async def unload(ctx, extension):
         client.unload_extension(f"events.{extension}")
 
 
-# Activating/loading all cogs on startup
+#8 Activating/loading all cogs on startup
 for filename in os.listdir("./core"):
     if filename.endswith(".py"):
         client.load_extension(f"core.{filename[:-3]}")
@@ -146,6 +107,6 @@ for filename in os.listdir("./events"):
         client.load_extension(f"events.{filename[:-3]}")
 
 
-#9 Token
 
+#9 Token
 client.run("Nzg5MTY3OTg1NDQ0NjUxMDA4.X9uH9Q.R9ESlVGDymMgGCr1kLLsVY8jeik")
