@@ -89,7 +89,9 @@ async def load(ctx, extension):
     if extension+".py" in os.listdir("./events"):
         client.load_extension(f"events.{extension}")
 
-#7 Unload specific cogs
+        
+        
+# 7 unload specific cogs
 @client.command()
 async def unload(ctx, extension):
     if extension+".py" in os.listdir("./core"):
@@ -98,6 +100,7 @@ async def unload(ctx, extension):
         client.unload_extension(f"events.{extension}")
 
 
+        
 #8 Activating/loading all cogs on startup
 for filename in os.listdir("./core"):
     if filename.endswith(".py"):
