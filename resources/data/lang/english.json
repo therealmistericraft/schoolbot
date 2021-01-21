@@ -1,4 +1,10 @@
 {
   "0":"Help [page 1] - set up the bot",
-  "1":"Help [page 2] - everything about assignments"
+  "1":"Help [page 2] - everything about assignments",
+  "2":"Welcome to the setup assistant.",
+  "3":"I created a new channel, in which you have to post a course list of your Class / Grade / Course / School. I called it `schoolbot-setup`.",
+  "4":"But the course list hast to be in `json`-format. To create a course list, do in windows a rightclick to an empty field on your desktop or in the file explorer. Navigate to `New -> Text file`. Mark even the file extension with `CTRL`+`A` and name the file `courselist.json`. Accept with the `ENTER`-Key.",
+  "5":"In this example, you see what you have to write in the file. If you need help, feel free to ask on our discord server (https://discord.gg/ra2yz4tyPa).",
+  "6":"```{\n    \"[COURSENAME]\":\"[ABBREVIATION]|[THEME]\"\n}",
+  "7":"Replace the words in capital letters including the square brackets with the respective value. Please notice that the abbreviation has to be exactly 3 letters or numbers(, but they can be combined). Punctation marks and special characters lead to errors."
 }

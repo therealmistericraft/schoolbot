@@ -35,7 +35,9 @@ class On_message(commands.Cog):
         if message.content == "prefix":
             embed = discord.Embed(title="The prefix of this server is ``"+prefix+"``.", colour=discord.Colour.blue())
             await message.channel.send(content=None, embed=embed)
-        await main.client.process_commands(message)
+        if message.attachments:
+            if "courselist.json" == message.attachments[0].filename:
+                #TODO: Download file and rename it after the guild id
 
 
 

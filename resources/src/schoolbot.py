@@ -146,4 +146,4 @@ for filename in os.listdir("./courses"):
 
 
 #10 Token
-client.run("TODO: insert TOKEN")
+client.run("#TODO: Insert TOKEN")
