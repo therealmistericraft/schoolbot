@@ -1,38 +1,36 @@
 ---
 name: Bug report
-about: Create a report to help us improve
+about: Is something not working? Report the issue here.
 title: ''
-labels: ''
-assignees: ''
+labels: bug
+assignees: therealmistericraft
 
 ---
 
-**Describe the bug**
-A clear and concise description of what the bug is.
+*Please remove the hints written italic.*
+### Description
+*Please tell what is not OK. Do not write a whole novel, but give a short overview. You are encouraged to describe the wrong behavior later again.
+You can add other things here as well.*
 
-**To Reproduce**
-Steps to reproduce the behavior:
-1. Go to '...'
-2. Click on '....'
-3. Scroll down to '....'
-4. See error
+### Issue Source
+*What did you do, as the error occurred?
+Please make a step-by-step list.*
 
-**Expected behavior**
-A clear and concise description of what you expected to happen.
+### Current behavior
+*Describe what happend detailed.*
 
-**Screenshots**
-If applicable, add screenshots to help explain your problem.
+### Expected behavior
+*What should have happend?*
 
-**Desktop (please complete the following information):**
- - OS: [e.g. iOS]
- - Browser [e.g. chrome, safari]
- - Version [e.g. 22]
+### Attachements
+*If possible, add screenshots and links.*
 
-**Smartphone (please complete the following information):**
- - Device: [e.g. iPhone6]
- - OS: [e.g. iOS8.1]
- - Browser [e.g. stock browser, safari]
- - Version [e.g. 22]
+### Device and software
+- Model Name (leave empty if not applicable): 
+- Discord Version:
+*Please Choose what applies:*
+- [x] Operating System:
+- [] Web App
 
-**Additional context**
-Add any other context about the problem here.
+### How to fix?
+*If you know, how to fix this bug, describe it here. If not, leave empty.*
