@@ -7,7 +7,7 @@ import sys
 import aiohttp
 sys.path.append("../")
 import schoolbot as main
-import courses.read_courselist
+from courses import read_courselist
 
 
 
@@ -37,9 +37,12 @@ class On_message(commands.Cog):
         if message.content == "prefix":
             embed = discord.Embed(title="The prefix of this server is ``"+prefix+"``.", colour=discord.Colour.blue())
             await message.channel.send(content=None, embed=embed)
-        if message.channel.id in setupchannels:
+        if message.channel.id == main.setupchannels[str(message.guild.id)]:
+            # IMPORTANT: if is ignored
+            print(message.channel.id)
             if message.attachments:
                 if "courselist.json" == message.attachments[0].filename:
+                    print(2)
                     async with aiohttp.ClientSession() as session:
                         async with session.get(message.attachments[0].url) as r:
                             file = await r.json()
