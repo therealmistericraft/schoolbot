@@ -20,6 +20,9 @@ class Setup(commands.Cog):
         await channel.set_permissions(ctx.guild.default_role, read_messages=False, send_messages=False)
         await channel.set_permissions(ctx.message.author, attach_files=True, send_messages=True, read_messages=True)
         await channel.set_permissions(ctx.guild.me, read_messages=True)
+        main.setupchannels[str(ctx.guild.id)] = channel.id
+        with open("../data/usr/setupchannel.json", "w") as setupchannelfile:
+            json.dump(main.setupchannels, setupchannelfile, indent=4)
         embed = discord.Embed(title = main.lang["2"],
             description = main.lang["3"]+"\n"+main.lang["4"],
             colour = discord.Colour.orange())

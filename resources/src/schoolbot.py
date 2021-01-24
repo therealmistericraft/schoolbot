@@ -52,6 +52,7 @@ custom_prefixes = {}
 langs = {}
 msg_ger = {}
 msg_eng = {}
+setupchannels = {}
 
 
 
@@ -72,6 +73,10 @@ with open("../data/lang/german.json") as gerfile:
 #4.3.2 english
 with open("../data/lang/english.json") as engfile:
     msg_eng = json.load(engfile)
+
+#4.4 setupchannel
+with open("../data/usr/setupchannel.json") as setupchannelfile:
+    setupchannels = json.load(setupchannelfile)
 
 
 

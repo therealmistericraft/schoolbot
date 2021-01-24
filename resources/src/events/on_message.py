@@ -4,8 +4,10 @@ import discord
 from discord.ext import commands
 import json
 import sys
+import aiohttp
 sys.path.append("../")
 import schoolbot as main
+import courses.read_courselist
 
 
 
@@ -35,9 +37,13 @@ class On_message(commands.Cog):
         if message.content == "prefix":
             embed = discord.Embed(title="The prefix of this server is ``"+prefix+"``.", colour=discord.Colour.blue())
             await message.channel.send(content=None, embed=embed)
-        if message.attachments:
-            if "courselist.json" == message.attachments[0].filename:
-                #TODO: Download file and rename it after the guild id
+        if message.channel.id in setupchannels:
+            if message.attachments:
+                if "courselist.json" == message.attachments[0].filename:
+                    async with aiohttp.ClientSession() as session:
+                        async with session.get(message.attachments[0].url) as r:
+                            file = await r.json()
+                            read_courselist.read(message, file)
 
 
 
